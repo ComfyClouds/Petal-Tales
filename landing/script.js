@@ -216,7 +216,7 @@ function loadTestimonials() {
 
   const testimonials = [
     { text: 'The most beautiful bouquet I have ever received. The custom drawing made me cry happy tears!', author: 'Nour A.', emoji: '🌷', stars: '★★★★★' },
-    { text: 'Ordered for my mother's birthday — she said it was the most thoughtful gift she's ever gotten. Will order again!', author: 'Yasmine M.', emoji: '🌸', stars: '★★★★★' },
+    { text: "Ordered for my mother's birthday — she said it was the most thoughtful gift she's ever gotten. Will order again!", author: 'Yasmine M.', emoji: '🌸', stars: '★★★★★' },
     { text: 'The dried flower arrangement is still sitting on my desk months later. Absolutely stunning quality.', author: 'Sara K.', emoji: '🌾', stars: '★★★★★' },
   ];
 
