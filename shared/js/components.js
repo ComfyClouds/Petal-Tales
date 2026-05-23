@@ -3,37 +3,45 @@
    ============================================================ */
 
 /**
- * Detect how many directory levels deep the current page is.
- * e.g. /landing/index.html  → depth 1 → prefix = "../"
- *      /legal/privacy/index.html → depth 2 → prefix = "../../"
+ * Detect the absolute base URL of the site root by looking at
+ * where this script file (components.js) lives.
+ * components.js is always at {ROOT}/shared/js/components.js
+ * So ROOT = everything before "/shared/js/components.js"
+ *
+ * This works correctly regardless of:
+ *  - How deep the current page is nested
+ *  - Whether the site is at the domain root or a subfolder (e.g. /Petal-Tales/)
  */
-function _getPathPrefix() {
-  const parts = window.location.pathname.replace(/\\/g, '/').split('/').filter(Boolean);
-  // parts for /landing/index.html = ['landing', 'index.html'] → depth 1
-  // parts for /legal/privacy/index.html = ['legal', 'privacy', 'index.html'] → depth 2
-  const depth = parts.length - 1; // subtract the filename itself
-  if (depth <= 1) return '../';
-  return '../'.repeat(depth);
+function _getBase() {
+  const scripts = document.querySelectorAll('script[src]');
+  for (const s of scripts) {
+    if (s.src.includes('/shared/js/components.js')) {
+      // e.g. https://comfyclouds.github.io/Petal-Tales/shared/js/components.js
+      // → base = https://comfyclouds.github.io/Petal-Tales/
+      return s.src.replace('/shared/js/components.js', '') + '/';
+    }
+  }
+  // Fallback: use relative path (works for local file:// testing)
+  const depth = window.location.pathname.split('/').filter(Boolean).length - 1;
+  return depth > 0 ? '../'.repeat(depth) : './';
 }
 
 /**
- * Render the navbar into an element with id="navbar-placeholder"
- * Automatically detects path depth so links work from any subdirectory.
- * @param {string} activePage - 'shop'|'contact'|'' etc
+ * Render the navbar into #navbar-placeholder.
+ * @param {string} activePage - 'shop' | 'contact' | ''
  */
 function renderNavbar(activePage = '') {
   const placeholder = document.getElementById('navbar-placeholder');
   if (!placeholder) return;
 
-  const R = _getPathPrefix(); // relative prefix to site root
+  const B = _getBase();
 
   placeholder.innerHTML = `
     <nav class="navbar" role="navigation" aria-label="Main navigation">
       <div class="container">
         <div class="navbar__inner">
 
-          <a href="${R}landing/index.html" class="navbar__logo" aria-label="Petal Tales Home">
-            <!-- Tulip Icon -->
+          <a href="${B}landing/index.html" class="navbar__logo" aria-label="Petal Tales Home">
             <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M14 24V14" stroke="#3A2428" stroke-width="1.5" stroke-linecap="round"/>
               <path d="M14 14C14 14 10 12 10 8C10 5.8 11.8 4 14 4C16.2 4 18 5.8 18 8C18 12 14 14 14 14Z" fill="#DB96A1" stroke="#3A2428" stroke-width="1"/>
@@ -46,9 +54,9 @@ function renderNavbar(activePage = '') {
           </a>
 
           <ul class="navbar__nav" role="list">
-            <li><a href="${R}shop/index.html" class="${activePage==='shop'?'active':''}" data-i18n="nav_shop">Shop</a></li>
-            <li><a href="${R}landing/index.html#about" data-i18n="nav_about">About</a></li>
-            <li><a href="${R}contact/index.html" class="${activePage==='contact'?'active':''}" data-i18n="nav_contact">Contact</a></li>
+            <li><a href="${B}shop/index.html" class="${activePage === 'shop' ? 'active' : ''}" data-i18n="nav_shop">Shop</a></li>
+            <li><a href="${B}landing/index.html#about" data-i18n="nav_about">About</a></li>
+            <li><a href="${B}contact/index.html" class="${activePage === 'contact' ? 'active' : ''}" data-i18n="nav_contact">Contact</a></li>
           </ul>
 
           <div class="navbar__actions">
@@ -57,15 +65,13 @@ function renderNavbar(activePage = '') {
               <button data-lang="ar">ع</button>
             </div>
 
-            <!-- Search -->
             <button class="navbar__icon-btn" aria-label="Search" onclick="toggleSearch()">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
                 <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/>
               </svg>
             </button>
 
-            <!-- Cart -->
-            <a href="${R}cart/index.html" class="navbar__icon-btn" aria-label="Cart">
+            <a href="${B}cart/index.html" class="navbar__icon-btn" aria-label="Cart">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/>
                 <path d="M16 10a4 4 0 01-8 0"/>
@@ -81,11 +87,10 @@ function renderNavbar(activePage = '') {
       </div>
     </nav>
 
-    <!-- Mobile Menu -->
     <div class="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
-      <a href="${R}shop/index.html" data-i18n="nav_shop">Shop</a>
-      <a href="${R}landing/index.html#about" data-i18n="nav_about">About</a>
-      <a href="${R}contact/index.html" data-i18n="nav_contact">Contact</a>
+      <a href="${B}shop/index.html" data-i18n="nav_shop">Shop</a>
+      <a href="${B}landing/index.html#about" data-i18n="nav_about">About</a>
+      <a href="${B}contact/index.html" data-i18n="nav_contact">Contact</a>
       <div class="lang-switcher" style="margin-top:1rem">
         <button data-lang="en">EN</button>
         <button data-lang="ar">ع</button>
@@ -93,27 +98,24 @@ function renderNavbar(activePage = '') {
     </div>
   `;
 
-  // FIX: initNavbar() must run AFTER the navbar HTML exists.
-  // main.js fires initNavbar() on DOMContentLoaded — before this function is called —
-  // so we call it again here to ensure burger menu, cart count, and lang switcher work.
+  // initNavbar runs on DOMContentLoaded in main.js — before renderNavbar is called —
+  // so we call it again here now that the navbar HTML actually exists.
   if (typeof initNavbar === 'function') initNavbar();
 }
 
 /**
- * Render the footer into #footer-placeholder
- * Automatically detects path depth so links work from any subdirectory.
+ * Render the footer into #footer-placeholder.
  */
 function renderFooter() {
   const placeholder = document.getElementById('footer-placeholder');
   if (!placeholder) return;
 
-  const R = _getPathPrefix();
+  const B = _getBase();
 
   placeholder.innerHTML = `
     <footer class="footer" role="contentinfo">
       <div class="container">
         <div class="footer__grid">
-          <!-- Brand -->
           <div>
             <div class="footer__brand-name">Petal Tales</div>
             <div class="footer__tagline">"Drawn with love... just for you"</div>
@@ -134,29 +136,26 @@ function renderFooter() {
             </div>
           </div>
 
-          <!-- Shop -->
           <div>
             <h4 class="footer__col-title">Shop</h4>
             <ul class="footer__links">
-              <li><a href="${R}shop/index.html?cat=bouquets">Bouquets</a></li>
-              <li><a href="${R}shop/index.html?cat=special">Special Bouquets</a></li>
-              <li><a href="${R}shop/index.html?cat=gift-sets">Gift Sets</a></li>
-              <li><a href="${R}shop/index.html?cat=dried-flowers">Dried Flowers</a></li>
+              <li><a href="${B}shop/index.html?cat=bouquets">Bouquets</a></li>
+              <li><a href="${B}shop/index.html?cat=special">Special Bouquets</a></li>
+              <li><a href="${B}shop/index.html?cat=gift-sets">Gift Sets</a></li>
+              <li><a href="${B}shop/index.html?cat=dried-flowers">Dried Flowers</a></li>
             </ul>
           </div>
 
-          <!-- Help -->
           <div>
             <h4 class="footer__col-title">Help</h4>
             <ul class="footer__links">
-              <li><a href="${R}contact/index.html">Contact Us</a></li>
-              <li><a href="${R}legal/shipping/index.html">Delivery &amp; Shipping</a></li>
-              <li><a href="${R}legal/tos/index.html">Terms of Service</a></li>
-              <li><a href="${R}legal/privacy/index.html">Privacy Policy</a></li>
+              <li><a href="${B}contact/index.html">Contact Us</a></li>
+              <li><a href="${B}legal/shipping/index.html">Delivery &amp; Shipping</a></li>
+              <li><a href="${B}legal/tos/index.html">Terms of Service</a></li>
+              <li><a href="${B}legal/privacy/index.html">Privacy Policy</a></li>
             </ul>
           </div>
 
-          <!-- Contact -->
           <div>
             <h4 class="footer__col-title">Reach Us</h4>
             <ul class="footer__links">
@@ -170,9 +169,9 @@ function renderFooter() {
         <div class="footer__bottom">
           <span>© ${new Date().getFullYear()} Petal Tales. All rights reserved.</span>
           <div class="footer__legal">
-            <a href="${R}legal/tos/index.html">Terms</a>
-            <a href="${R}legal/privacy/index.html">Privacy</a>
-            <a href="${R}legal/shipping/index.html">Shipping</a>
+            <a href="${B}legal/tos/index.html">Terms</a>
+            <a href="${B}legal/privacy/index.html">Privacy</a>
+            <a href="${B}legal/shipping/index.html">Shipping</a>
           </div>
         </div>
       </div>
