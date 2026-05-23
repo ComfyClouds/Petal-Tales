@@ -41,7 +41,7 @@ const MOCK_PRODUCTS = [
     category: 'bouquets',
     name_en: 'Blush Garden Bouquet',
     name_ar: 'باقة الحديقة الوردية',
-    desc_en: 'A romantic arrangement of blush tulips, white ranunculus, and baby's breath. Wrapped in our signature petal paper.',
+    desc_en: "A romantic arrangement of blush tulips, white ranunculus, and baby's breath. Wrapped in our signature petal paper.",
     desc_ar: 'تنسيق رومانسي من الزنبق الوردي والرانونكيلوس الأبيض وزهرة العروس. ملفوفة في ورق البتلة المميز لدينا.',
     price: 450,
     images: ['https://images.unsplash.com/photo-1487530811015-780f2bb27d72?w=600', 'https://images.unsplash.com/photo-1490750967868-88df5691cc04?w=600'],
