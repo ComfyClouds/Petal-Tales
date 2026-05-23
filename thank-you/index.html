@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thank You — Petal Tales</title>
+  <link rel="stylesheet" href="../shared/css/design-tokens.css"/>
+  <link rel="stylesheet" href="../shared/css/global.css"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>🌷</text></svg>"/>
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+  <main class="thankyou-page page-enter">
+    <div class="thankyou-bg" aria-hidden="true">
+      <div class="ty-petal ty-p1"></div>
+      <div class="ty-petal ty-p2"></div>
+      <div class="ty-petal ty-p3"></div>
+      <div class="ty-petal ty-p4"></div>
+    </div>
+    <div class="container">
+      <div class="thankyou-card" id="tyCard">
+        <!-- animated tulip -->
+        <div class="ty-tulip" aria-hidden="true">
+          <svg viewBox="0 0 120 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M60 190 Q58 155 60 120" stroke="#7A9E7E" stroke-width="4" stroke-linecap="round"/>
+            <path d="M60 160 Q42 150 36 128 Q52 134 60 155Z" fill="#8EAF7B"/>
+            <path d="M60 160 Q78 150 84 128 Q68 134 60 155Z" fill="#7A9E7E"/>
+            <path class="ty-petal-svg p1" d="M60 120 Q50 98 52 76 Q61 93 60 120Z" fill="#F9C5D1"/>
+            <path class="ty-petal-svg p2" d="M60 120 Q70 98 68 76 Q59 93 60 120Z" fill="#F9C5D1"/>
+            <path class="ty-petal-svg p3" d="M60 120 Q40 110 38 88 Q54 98 60 118Z" fill="#FFCFDF"/>
+            <path class="ty-petal-svg p4" d="M60 120 Q80 110 82 88 Q66 98 60 118Z" fill="#FFCFDF"/>
+            <path class="ty-petal-svg p5" d="M60 120 Q44 116 42 96 Q56 104 60 118Z" fill="#FDE2E8"/>
+            <path class="ty-petal-svg p6" d="M60 120 Q76 116 78 96 Q64 104 60 118Z" fill="#FDE2E8"/>
+          </svg>
+        </div>
+
+        <div class="ty-check">✓</div>
+        <h1 class="ty-title">Order Placed!</h1>
+        <p class="ty-subtitle">Drawn with love, just for you 🌷</p>
+        <p class="ty-message">Thank you for your order. We're preparing your flowers with care and will notify you once they're on their way.</p>
+
+        <div class="ty-order-box" id="tyOrderBox">
+          <!-- populated by JS -->
+        </div>
+
+        <div class="ty-actions">
+          <a href="../shop/index.html" class="btn btn--primary">Continue Shopping</a>
+          <a href="../landing/index.html" class="btn btn--ghost">Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div id="footer-placeholder"></div>
+  <script src="../shared/js/main.js"></script>
+  <script src="../shared/js/components.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

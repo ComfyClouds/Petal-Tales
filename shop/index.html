@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Shop all Petal Tales flowers — bouquets, gift sets, and dried flowers."/>
+  <title>Shop — Petal Tales</title>
+  <link rel="stylesheet" href="../shared/css/design-tokens.css"/>
+  <link rel="stylesheet" href="../shared/css/global.css"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>🌷</text></svg>"/>
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+  <main class="shop-page page-enter">
+
+    <!-- Page Header -->
+    <div class="shop-header">
+      <div class="shop-header__bg" aria-hidden="true"></div>
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../landing/index.html">Home</a>
+          <span class="breadcrumb__sep" aria-hidden="true">›</span>
+          <span aria-current="page">Shop</span>
+        </nav>
+        <h1 class="shop-header__title" data-reveal>Our Collection</h1>
+        <p class="shop-header__sub" data-reveal data-reveal-delay="1">Every arrangement is handcrafted with love, ready to tell your story.</p>
+      </div>
+    </div>
+
+    <div class="container shop-layout">
+
+      <!-- Sidebar -->
+      <aside class="shop-sidebar" id="shopSidebar" aria-label="Filters">
+        <div class="sidebar__section">
+          <h3 class="sidebar__title">Categories</h3>
+          <ul class="sidebar__cats" id="sidebarCats" role="list"></ul>
+        </div>
+        <div class="sidebar__section">
+          <h3 class="sidebar__title">Price Range</h3>
+          <div class="price-range">
+            <div class="price-range__inputs">
+              <input type="number" id="priceMin" class="form-input" placeholder="Min" min="0" value="0"/>
+              <span>–</span>
+              <input type="number" id="priceMax" class="form-input" placeholder="Max" min="0" value="2000"/>
+            </div>
+            <button class="btn btn--outline" style="width:100%;margin-top:12px;font-size:.8rem;padding:10px" id="applyPrice">Apply</button>
+          </div>
+        </div>
+        <div class="sidebar__section">
+          <h3 class="sidebar__title">Availability</h3>
+          <label class="sidebar__check">
+            <input type="checkbox" id="inStockOnly" checked/>
+            <span>In Stock Only</span>
+          </label>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <div class="shop-main">
+
+        <!-- Toolbar -->
+        <div class="shop-toolbar">
+          <div class="shop-search-wrap">
+            <svg class="shop-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+            <input type="search" id="shopSearch" class="shop-search" placeholder="Search flowers…" aria-label="Search products" data-i18n="search_placeholder"/>
+          </div>
+          <div class="shop-toolbar__right">
+            <span class="shop-count" id="shopCount">Loading…</span>
+            <select class="form-select shop-sort" id="shopSort" aria-label="Sort products">
+              <option value="default">Featured</option>
+              <option value="price-asc">Price: Low → High</option>
+              <option value="price-desc">Price: High → Low</option>
+              <option value="name">Name A–Z</option>
+            </select>
+            <div class="view-toggle" role="group" aria-label="View mode">
+              <button class="view-toggle__btn active" data-view="grid" aria-label="Grid view">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="0" y="0" width="6" height="6" rx="1"/><rect x="10" y="0" width="6" height="6" rx="1"/><rect x="0" y="10" width="6" height="6" rx="1"/><rect x="10" y="10" width="6" height="6" rx="1"/></svg>
+              </button>
+              <button class="view-toggle__btn" data-view="list" aria-label="List view">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="0" y="0" width="16" height="3" rx="1"/><rect x="0" y="6" width="16" height="3" rx="1"/><rect x="0" y="12" width="16" height="3" rx="1"/></svg>
+              </button>
+            </div>
+            <!-- Mobile filter toggle -->
+            <button class="btn btn--ghost shop-filter-toggle" id="filterToggle" style="display:none">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+              Filters
+            </button>
+          </div>
+        </div>
+
+        <!-- Category pills (quick nav) -->
+        <div class="cat-pills" id="catPills" role="list" aria-label="Category filter"></div>
+
+        <!-- Product Grid -->
+        <div class="products-grid" id="productsGrid" role="list">
+          <div style="grid-column:1/-1;display:flex;justify-content:center;padding:4rem 0">
+            <div class="loading-spinner"></div>
+          </div>
+        </div>
+
+        <!-- Empty state -->
+        <div class="shop-empty" id="shopEmpty" hidden>
+          <div class="shop-empty__icon">🌷</div>
+          <h3>No flowers found</h3>
+          <p>Try adjusting your search or filters.</p>
+          <button class="btn btn--outline" id="resetFilters">Clear Filters</button>
+        </div>
+
+        <!-- Pagination -->
+        <div class="shop-pagination" id="shopPagination" aria-label="Pagination"></div>
+      </div>
+    </div>
+  </main>
+  <div id="footer-placeholder"></div>
+  <script src="../shared/js/main.js"></script>
+  <script src="../shared/js/components.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

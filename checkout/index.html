@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout — Petal Tales</title>
+  <link rel="stylesheet" href="../shared/css/design-tokens.css"/>
+  <link rel="stylesheet" href="../shared/css/global.css"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>🌷</text></svg>"/>
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+  <main class="checkout-page page-enter">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../landing/index.html">Home</a><span class="breadcrumb__sep">›</span>
+        <a href="../cart/index.html">Cart</a><span class="breadcrumb__sep">›</span>
+        <span>Checkout</span>
+      </nav>
+
+      <!-- Steps indicator -->
+      <div class="checkout-steps" role="list" aria-label="Checkout steps">
+        <div class="checkout-step active" data-step="1" role="listitem">
+          <div class="checkout-step__num">1</div>
+          <span>Information</span>
+        </div>
+        <div class="checkout-step__line"></div>
+        <div class="checkout-step" data-step="2" role="listitem">
+          <div class="checkout-step__num">2</div>
+          <span>Shipping</span>
+        </div>
+        <div class="checkout-step__line"></div>
+        <div class="checkout-step" data-step="3" role="listitem">
+          <div class="checkout-step__num">3</div>
+          <span>Payment</span>
+        </div>
+      </div>
+
+      <div class="checkout-layout">
+        <!-- Left: form panels -->
+        <div class="checkout-form-wrap">
+
+          <!-- Step 1: Customer Info -->
+          <div class="checkout-panel" id="panel1">
+            <h2 class="checkout-panel__title">Contact Information</h2>
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label" for="firstName">First Name *</label>
+                <input type="text" id="firstName" class="form-input" placeholder="Layla" required autocomplete="given-name"/>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="lastName">Last Name *</label>
+                <input type="text" id="lastName" class="form-input" placeholder="Hassan" required autocomplete="family-name"/>
+              </div>
+              <div class="form-group form-group--full">
+                <label class="form-label" for="email">Email Address *</label>
+                <input type="email" id="email" class="form-input" placeholder="layla@example.com" required autocomplete="email"/>
+              </div>
+              <div class="form-group form-group--full">
+                <label class="form-label" for="phone">Phone Number *</label>
+                <input type="tel" id="phone" class="form-input" placeholder="+20 1XX XXX XXXX" required autocomplete="tel"/>
+              </div>
+            </div>
+            <h2 class="checkout-panel__title" style="margin-top:var(--sp-xl)">Delivery Address</h2>
+            <div class="form-grid">
+              <div class="form-group form-group--full">
+                <label class="form-label" for="address">Street Address *</label>
+                <input type="text" id="address" class="form-input" placeholder="123 Nile Street" required autocomplete="street-address"/>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="city">City *</label>
+                <input type="text" id="city" class="form-input" placeholder="Cairo" required autocomplete="address-level2"/>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="district">District</label>
+                <input type="text" id="district" class="form-input" placeholder="Zamalek" autocomplete="address-level3"/>
+              </div>
+              <div class="form-group form-group--full">
+                <label class="form-label" for="notes">Delivery Notes</label>
+                <textarea id="notes" class="form-textarea" placeholder="Any special delivery instructions…" rows="2"></textarea>
+              </div>
+            </div>
+            <div class="checkout-panel__footer">
+              <a href="../cart/index.html" class="btn btn--ghost">← Back to Cart</a>
+              <button class="btn btn--primary" id="toStep2">Continue to Shipping →</button>
+            </div>
+          </div>
+
+          <!-- Step 2: Shipping -->
+          <div class="checkout-panel" id="panel2" hidden>
+            <h2 class="checkout-panel__title">Shipping Method</h2>
+            <div class="shipping-options">
+              <label class="shipping-option">
+                <input type="radio" name="shipping" value="standard" checked/>
+                <div class="shipping-option__card">
+                  <div class="shipping-option__info">
+                    <span class="shipping-option__name">Standard Delivery</span>
+                    <span class="shipping-option__desc">2–4 business days</span>
+                  </div>
+                  <span class="shipping-option__price">EGP 80</span>
+                </div>
+              </label>
+              <label class="shipping-option">
+                <input type="radio" name="shipping" value="express"/>
+                <div class="shipping-option__card">
+                  <div class="shipping-option__info">
+                    <span class="shipping-option__name">Express Delivery</span>
+                    <span class="shipping-option__desc">Same day (order before 2 PM)</span>
+                  </div>
+                  <span class="shipping-option__price">EGP 150</span>
+                </div>
+              </label>
+              <label class="shipping-option">
+                <input type="radio" name="shipping" value="pickup"/>
+                <div class="shipping-option__card">
+                  <div class="shipping-option__info">
+                    <span class="shipping-option__name">Store Pickup</span>
+                    <span class="shipping-option__desc">Ready in 2 hours · Cairo</span>
+                  </div>
+                  <span class="shipping-option__price">Free</span>
+                </div>
+              </label>
+            </div>
+            <div class="checkout-panel__footer">
+              <button class="btn btn--ghost" id="toStep1">← Back</button>
+              <button class="btn btn--primary" id="toStep3">Continue to Payment →</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Payment -->
+          <div class="checkout-panel" id="panel3" hidden>
+            <h2 class="checkout-panel__title">Payment</h2>
+
+            <div class="payment-methods" role="group" aria-label="Payment method">
+              <label class="payment-method">
+                <input type="radio" name="payment" value="card" checked/>
+                <div class="payment-method__card">
+                  <span>💳</span>
+                  <span>Credit / Debit Card</span>
+                </div>
+              </label>
+              <label class="payment-method">
+                <input type="radio" name="payment" value="cash"/>
+                <div class="payment-method__card">
+                  <span>💵</span>
+                  <span>Cash on Delivery</span>
+                </div>
+              </label>
+              <label class="payment-method">
+                <input type="radio" name="payment" value="instapay"/>
+                <div class="payment-method__card">
+                  <span>📱</span>
+                  <span>InstaPay</span>
+                </div>
+              </label>
+            </div>
+
+            <!-- Card fields (shown when card selected) -->
+            <div class="card-fields" id="cardFields">
+              <div class="form-group">
+                <label class="form-label" for="cardName">Name on Card *</label>
+                <input type="text" id="cardName" class="form-input" placeholder="LAYLA HASSAN" autocomplete="cc-name"/>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="cardNumber">Card Number *</label>
+                <div class="card-input-wrap">
+                  <input type="text" id="cardNumber" class="form-input" placeholder="1234 5678 9012 3456" maxlength="19" autocomplete="cc-number"/>
+                  <span class="card-icons">💳</span>
+                </div>
+              </div>
+              <div class="form-grid" style="gap:var(--sp-md)">
+                <div class="form-group">
+                  <label class="form-label" for="cardExpiry">Expiry *</label>
+                  <input type="text" id="cardExpiry" class="form-input" placeholder="MM / YY" maxlength="7" autocomplete="cc-exp"/>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="cardCvv">CVV *</label>
+                  <input type="text" id="cardCvv" class="form-input" placeholder="123" maxlength="4" autocomplete="cc-csc"/>
+                </div>
+              </div>
+              <div class="secure-note">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                Your payment info is encrypted and secure.
+              </div>
+            </div>
+
+            <div class="checkout-panel__footer">
+              <button class="btn btn--ghost" id="toStep2b">← Back</button>
+              <button class="btn btn--primary" id="placeOrder" style="padding:16px 40px">
+                Place Order 🌷
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: Order Summary -->
+        <aside class="checkout-summary">
+          <h3 class="checkout-summary__title">Order Summary</h3>
+          <div class="checkout-summary__items" id="checkoutItems"></div>
+          <div class="checkout-summary__rows" id="checkoutRows"></div>
+        </aside>
+      </div>
+    </div>
+  </main>
+  <div id="footer-placeholder"></div>
+  <script src="../shared/js/main.js"></script>
+  <script src="../shared/js/components.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+/* ============================================================
+   PETAL TALES — Cart Page
+   ============================================================ */
+.cart-page { padding-top:calc(var(--nav-h) + var(--sp-xl));padding-bottom:var(--sp-3xl); }
+.cart-title { font-family:var(--font-display);margin-bottom:var(--sp-2xl); }
+.cart-layout { display:grid;grid-template-columns:1fr 360px;gap:var(--sp-2xl);align-items:start; }
+
+/* Items */
+.cart-items { display:flex;flex-direction:column;gap:var(--sp-md); }
+.cart-item {
+  display:grid;grid-template-columns:100px 1fr auto;gap:var(--sp-lg);
+  background:var(--ivory);border-radius:var(--r-lg);padding:var(--sp-lg);
+  align-items:center;transition:box-shadow var(--t-fast);
+}
+.cart-item:hover { box-shadow:var(--shadow-soft); }
+.cart-item__img { width:100px;height:100px;border-radius:var(--r-md);overflow:hidden;flex-shrink:0; }
+.cart-item__img img { width:100%;height:100%;object-fit:cover; }
+.cart-item__info {}
+.cart-item__name { font-family:var(--font-display);font-size:1.1rem;color:var(--deep-bark);margin-bottom:4px; }
+.cart-item__opts { font-size:.75rem;color:var(--text-muted);margin-bottom:var(--sp-sm); }
+.cart-item__price { font-family:var(--font-display);font-size:1rem;color:var(--deep-bark);font-weight:500; }
+.cart-item__actions { display:flex;flex-direction:column;align-items:flex-end;gap:var(--sp-md); }
+.cart-item__remove { font-size:.75rem;color:var(--text-muted);text-decoration:underline;cursor:pointer;background:none;border:none;transition:color var(--t-fast); }
+.cart-item__remove:hover { color:#c0392b; }
+.cart-item__qty { display:flex;align-items:center;border:1.5px solid var(--border);border-radius:var(--r-pill);overflow:hidden; }
+.cart-item__qty button { width:32px;height:34px;display:flex;align-items:center;justify-content:center;color:var(--text-muted);transition:background var(--t-fast); }
+.cart-item__qty button:hover { background:var(--petal-soft); }
+.cart-item__qty input { width:36px;text-align:center;border:none;background:transparent;font-size:.875rem;color:var(--deep-bark);outline:none; }
+
+/* Summary */
+.cart-summary {
+  background:var(--ivory);border-radius:var(--r-xl);padding:var(--sp-xl);
+  position:sticky;top:calc(var(--nav-h) + var(--sp-lg));box-shadow:var(--shadow-soft);
+}
+.cart-summary h2 { font-family:var(--font-display);font-size:1.3rem;margin-bottom:var(--sp-xl);color:var(--deep-bark); }
+.summary-row { display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--sp-md);font-size:.9rem;color:var(--text-muted); }
+.summary-row--total { font-family:var(--font-display);font-size:1.3rem;color:var(--deep-bark);font-weight:500;padding-top:var(--sp-md);border-top:1px solid var(--border);margin-top:var(--sp-md); }
+.promo-row { display:flex;gap:var(--sp-sm);margin-bottom:var(--sp-lg); }
+.promo-row .form-input { flex:1;padding:10px 14px;font-size:.875rem; }
+.cart-checkout-btn { width:100%;justify-content:center;font-size:.95rem;padding:16px; }
+
+.cart-empty { text-align:center;padding:var(--sp-3xl) 0; }
+.cart-empty__icon { font-size:3rem;opacity:.4;margin-bottom:var(--sp-md); }
+.cart-empty h2 { font-family:var(--font-display);font-size:1.8rem;margin-bottom:var(--sp-sm); }
+.cart-empty p { color:var(--text-muted);margin-bottom:var(--sp-xl);margin-inline:auto; }
+
+@media (max-width:768px) {
+  .cart-layout { grid-template-columns:1fr; }
+  .cart-summary { position:static; }
+  .cart-item { grid-template-columns:80px 1fr;gap:var(--sp-md); }
+  .cart-item__actions { flex-direction:row;align-items:center;grid-column:1/-1; }
+}

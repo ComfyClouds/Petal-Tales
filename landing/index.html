@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Petal Tales — Premium flower store. Drawn with love, just for you." />
+  <title>Petal Tales — Drawn With Love</title>
+  <link rel="stylesheet" href="../shared/css/design-tokens.css" />
+  <link rel="stylesheet" href="../shared/css/global.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>🌷</text></svg>" />
+</head>
+<body>
+
+  <div id="navbar-placeholder"></div>
+
+  <!-- Page Transition Overlay -->
+  <div class="page-overlay" id="pageOverlay" aria-hidden="true">
+    <div class="page-overlay__tulip">
+      <svg viewBox="0 0 120 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="200" x2="60" y2="100" stroke="#7A9E7E" stroke-width="3" stroke-linecap="round"/>
+        <path class="leaf leaf--left"  d="M60 160 Q40 150 35 130 Q50 135 60 155Z" fill="#7A9E7E"/>
+        <path class="leaf leaf--right" d="M60 160 Q80 150 85 130 Q70 135 60 155Z" fill="#7A9E7E"/>
+        <path class="petal p1" d="M60 100 Q52 80 55 60 Q62 75 60 100Z" fill="#F9C5D1"/>
+        <path class="petal p2" d="M60 100 Q68 80 65 60 Q58 75 60 100Z" fill="#F9C5D1"/>
+        <path class="petal p3" d="M60 100 Q45 88 42 68 Q56 78 60 100Z" fill="#FFCFDF"/>
+        <path class="petal p4" d="M60 100 Q75 88 78 68 Q64 78 60 100Z" fill="#FFCFDF"/>
+        <path class="petal p5" d="M60 100 Q48 94 46 75 Q57 82 60 100Z" fill="#FDE2E8"/>
+        <path class="petal p6" d="M60 100 Q72 94 74 75 Q63 82 60 100Z" fill="#FDE2E8"/>
+      </svg>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="hero" aria-label="Hero">
+      <div class="hero__ambient" aria-hidden="true">
+        <div class="ambient-petal ap1"></div>
+        <div class="ambient-petal ap2"></div>
+        <div class="ambient-petal ap3"></div>
+        <div class="ambient-petal ap4"></div>
+        <div class="ambient-petal ap5"></div>
+      </div>
+      <canvas class="hero__petals-canvas" id="petalsCanvas" aria-hidden="true"></canvas>
+
+      <div class="container hero__container">
+        <div class="hero__text">
+          <span class="hero__eyebrow" data-reveal>
+            <span class="hero__eyebrow-dot"></span>
+            New Collection — 2025
+          </span>
+          <h1 class="hero__title" data-reveal data-reveal-delay="1">
+            <span class="hero__title-line">Drawn</span>
+            <span class="hero__title-line italic">with love,</span>
+            <span class="hero__title-line">just for <em>you</em></span>
+          </h1>
+          <p class="hero__desc" data-reveal data-reveal-delay="2">
+            Each bouquet is a story. Each petal, a brushstroke.<br/>
+            Discover flower arrangements crafted to move the heart.
+          </p>
+          <div class="hero__actions" data-reveal data-reveal-delay="3">
+            <button class="btn btn--primary hero__cta" id="heroCta">
+              <span>Shop Now</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            <a href="#story" class="btn btn--ghost">Our Story</a>
+          </div>
+          <div class="hero__trust" data-reveal data-reveal-delay="4">
+            <div class="hero__trust-item"><span class="hero__trust-icon">🌷</span><span>Same-day delivery</span></div>
+            <div class="hero__trust-item"><span class="hero__trust-icon">✍️</span><span>Custom drawings</span></div>
+            <div class="hero__trust-item"><span class="hero__trust-icon">💛</span><span>Handcrafted love</span></div>
+          </div>
+        </div>
+
+        <div class="hero__flower-wrap" aria-label="Interactive tulip flower" role="img">
+          <div class="hero__flower-ring"></div>
+          <div class="hero__flower-ring hero__flower-ring--2"></div>
+          <svg class="hero__tulip" id="heroTulip" viewBox="0 0 220 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="tulip__stem" d="M110 370 Q108 320 110 260" stroke="#7A9E7E" stroke-width="5" stroke-linecap="round"/>
+            <path class="tulip__leaf tulip__leaf--l" d="M110 310 Q80 295 68 265 Q92 272 110 305Z" fill="#8EAF7B" opacity="0.9"/>
+            <path class="tulip__leaf tulip__leaf--r" d="M110 310 Q140 295 152 265 Q128 272 110 305Z" fill="#7A9E7E" opacity="0.9"/>
+            <path class="tulip__petal tp-ol" d="M110 260 Q90 230 92 190 Q104 215 110 260Z" fill="#F9C5D1"/>
+            <path class="tulip__petal tp-or" d="M110 260 Q130 230 128 190 Q116 215 110 260Z" fill="#F9C5D1"/>
+            <path class="tulip__petal tp-l"  d="M110 260 Q78 248 72 210 Q96 225 110 258Z" fill="#FFCFDF"/>
+            <path class="tulip__petal tp-r"  d="M110 260 Q142 248 148 210 Q124 225 110 258Z" fill="#FFCFDF"/>
+            <path class="tulip__petal tp-fl" d="M110 260 Q84 255 80 230 Q100 238 110 258Z" fill="#FDE2E8"/>
+            <path class="tulip__petal tp-fr" d="M110 260 Q136 255 140 230 Q120 238 110 258Z" fill="#FDE2E8"/>
+            <ellipse class="tulip__centre" cx="110" cy="255" rx="12" ry="10" fill="#E5C76B" opacity="0.5"/>
+          </svg>
+          <div class="hero__sparkles" aria-hidden="true">
+            <span class="sparkle s1">✦</span>
+            <span class="sparkle s2">✧</span>
+            <span class="sparkle s3">✦</span>
+            <span class="sparkle s4">✧</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__scroll-hint" aria-hidden="true">
+        <div class="hero__scroll-line"></div>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-strip" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Bouquets</span><span class="marquee-sep">✦</span>
+        <span>Special Arrangements</span><span class="marquee-sep">✦</span>
+        <span>Gift Sets</span><span class="marquee-sep">✦</span>
+        <span>Dried Flowers</span><span class="marquee-sep">✦</span>
+        <span>Custom Drawings</span><span class="marquee-sep">✦</span>
+        <span>Same-Day Delivery</span><span class="marquee-sep">✦</span>
+        <span>Bouquets</span><span class="marquee-sep">✦</span>
+        <span>Special Arrangements</span><span class="marquee-sep">✦</span>
+        <span>Gift Sets</span><span class="marquee-sep">✦</span>
+        <span>Dried Flowers</span><span class="marquee-sep">✦</span>
+        <span>Custom Drawings</span><span class="marquee-sep">✦</span>
+        <span>Same-Day Delivery</span><span class="marquee-sep">✦</span>
+      </div>
+    </div>
+
+    <!-- FEATURED PRODUCTS -->
+    <section class="featured section-pad" id="featured" aria-labelledby="featured-title">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <span class="section-header__eyebrow">Curated for you</span>
+          <h2 id="featured-title">Blooming Favourites</h2>
+          <p>Handpicked arrangements loved by our community — each one a small masterpiece.</p>
+        </div>
+        <div class="featured__grid" id="featuredGrid">
+          <div class="featured__loading"><div class="loading-spinner"></div></div>
+        </div>
+        <div class="featured__cta-wrap" data-reveal>
+          <a href="../shop/index.html" class="btn btn--outline">View All Flowers</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="categories section-pad" aria-labelledby="categories-title">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <span class="section-header__eyebrow">Browse by mood</span>
+          <h2 id="categories-title">Find Your Story</h2>
+        </div>
+        <div class="categories__grid" id="categoriesGrid"></div>
+      </div>
+    </section>
+
+    <!-- STORY -->
+    <section class="story section-pad" id="story" aria-labelledby="story-title">
+      <div class="container">
+        <div class="story__inner">
+          <div class="story__visual" data-reveal>
+            <div class="story__img-frame">
+              <img src="https://images.unsplash.com/photo-1490750967868-88df5691cc04?w=700&q=80" alt="Flowers being arranged" loading="lazy" width="560" height="640"/>
+              <div class="story__img-badge"><span>🌷</span><span>Est. 2022</span></div>
+            </div>
+          </div>
+          <div class="story__content">
+            <span class="section-header__eyebrow" data-reveal>Our Story</span>
+            <h2 data-reveal data-reveal-delay="1">Every Petal<br/>Tells a Tale</h2>
+            <p data-reveal data-reveal-delay="2">Petal Tales was born from the belief that flowers are more than decoration — they are emotion made visible. Founded in Cairo, each arrangement is hand-crafted and paired with original artwork.</p>
+            <p data-reveal data-reveal-delay="3">Our signature touch? A custom-drawn illustration delivered alongside every special bouquet. A memory you can keep forever.</p>
+            <div class="story__stats" data-reveal data-reveal-delay="3">
+              <div class="story__stat"><span class="story__stat-num">2,400+</span><span class="story__stat-label">Happy Customers</span></div>
+              <div class="story__stat"><span class="story__stat-num">150+</span><span class="story__stat-label">Unique Designs</span></div>
+              <div class="story__stat"><span class="story__stat-num">100%</span><span class="story__stat-label">Handcrafted</span></div>
+            </div>
+            <a href="../contact/index.html" class="btn btn--primary" data-reveal data-reveal-delay="4">Get in Touch</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPECIAL CTA -->
+    <section class="special-cta section-pad" aria-label="Special Bouquets">
+      <div class="container">
+        <div class="special-cta__card" data-reveal>
+          <div class="special-cta__glow"></div>
+          <div class="special-cta__content">
+            <span class="section-header__eyebrow">Something truly unique</span>
+            <h2>Custom Drawn Bouquets</h2>
+            <p>Tell us your story — we'll turn it into a floral masterpiece with a hand-illustrated artwork card, crafted just for you.</p>
+            <a href="../shop/index.html?cat=special" class="btn btn--gold">Explore Special Bouquets</a>
+          </div>
+          <div class="special-cta__visual" aria-hidden="true">
+            <div class="special-cta__petal-pile">
+              <span>🌷</span><span>🌸</span><span>🌺</span><span>✍️</span><span>💛</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials section-pad" aria-labelledby="testimonials-title">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <span class="section-header__eyebrow">Loved by all</span>
+          <h2 id="testimonials-title">Words from the Heart</h2>
+        </div>
+        <div class="testimonials__track" id="testimonialsTrack"></div>
+      </div>
+    </section>
+
+    <!-- INSTAGRAM STRIP -->
+    <section class="instagram-strip" aria-label="Instagram gallery">
+      <div class="instagram-strip__header">
+        <span>@petaltales.eg</span>
+        <a href="#" class="btn btn--ghost" style="font-size:0.75rem;padding:8px 20px">Follow Us</a>
+      </div>
+      <div class="instagram-strip__grid" id="igGrid"></div>
+    </section>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="../shared/js/main.js"></script>
+  <script src="../shared/js/components.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

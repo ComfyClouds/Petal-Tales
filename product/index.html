@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product — Petal Tales</title>
+  <link rel="stylesheet" href="../shared/css/design-tokens.css"/>
+  <link rel="stylesheet" href="../shared/css/global.css"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>🌷</text></svg>"/>
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+  <main class="product-page page-enter">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb" id="productBreadcrumb">
+        <a href="../landing/index.html">Home</a>
+        <span class="breadcrumb__sep">›</span>
+        <a href="../shop/index.html">Shop</a>
+        <span class="breadcrumb__sep">›</span>
+        <span id="breadcrumbName">Product</span>
+      </nav>
+      <div class="product-layout" id="productLayout">
+        <div style="grid-column:1/-1;display:flex;justify-content:center;padding:4rem"><div class="loading-spinner"></div></div>
+      </div>
+      <section class="related-section" id="relatedSection" style="display:none">
+        <div class="section-header" style="margin-bottom:var(--sp-xl)">
+          <span class="section-header__eyebrow">You may also love</span>
+          <h2>Related Flowers</h2>
+        </div>
+        <div class="related-grid" id="relatedGrid"></div>
+      </section>
+    </div>
+  </main>
+  <div id="footer-placeholder"></div>
+  <script src="../shared/js/main.js"></script>
+  <script src="../shared/js/components.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

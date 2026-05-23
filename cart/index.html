@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cart — Petal Tales</title>
+  <link rel="stylesheet" href="../shared/css/design-tokens.css"/>
+  <link rel="stylesheet" href="../shared/css/global.css"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>🌷</text></svg>"/>
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+  <main class="cart-page page-enter">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../landing/index.html">Home</a><span class="breadcrumb__sep">›</span>
+        <a href="../shop/index.html">Shop</a><span class="breadcrumb__sep">›</span>
+        <span>Cart</span>
+      </nav>
+      <h1 class="cart-title" data-reveal>Your Basket</h1>
+
+      <div class="cart-layout" id="cartLayout">
+        <!-- populated by JS -->
+      </div>
+
+      <div class="cart-empty" id="cartEmpty" hidden>
+        <div class="cart-empty__icon">🛒</div>
+        <h2>Your cart is empty</h2>
+        <p>Looks like you haven't added any flowers yet.</p>
+        <a href="../shop/index.html" class="btn btn--primary">Shop Now</a>
+      </div>
+    </div>
+  </main>
+  <div id="footer-placeholder"></div>
+  <script src="../shared/js/main.js"></script>
+  <script src="../shared/js/components.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
