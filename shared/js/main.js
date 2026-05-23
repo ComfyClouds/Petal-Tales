@@ -11,7 +11,7 @@ const PT_CONFIG = {
   // Google Sheets integration
   // Replace SHEET_ID with your actual Google Sheets ID
   // Sheet must be published: File → Share → Publish to Web → CSV
-  SHEET_ID: 'YOUR_GOOGLE_SHEET_ID',
+  SHEET_ID: '1Kct89S82jbWyKVlaxiY6afozWkOEmFjfQMSBaYCnTrI',
   // Each tab maps to a CSV endpoint
   SHEETS: {
     products:   'products',
@@ -19,7 +19,7 @@ const PT_CONFIG = {
     settings:   'settings',
   },
   // Toggle between mock data (true) and live Google Sheets (false)
-  USE_MOCK: true,
+  USE_MOCK: false,
   CURRENCY: 'EGP',
   CURRENCY_SYMBOL: 'ج.م',
 };
